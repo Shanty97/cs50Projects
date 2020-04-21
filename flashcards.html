@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+	<script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+	<script src="https://unpkg.com/babel-standalone@6.26.0/babel.min.js"></script>
+	<link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;0,700;1,400;1,700;1,900&display=swap" rel="stylesheet">
+	<title>Flashcards</title>
+	<style type="text/css">
+		table, th, td {
+			border: 1px #7F7068 solid;
+			padding: 10px;	
+			font-family: "Lato", sans-serif;
+			font-size: 1rem;
+			color: #7F7068;
+			font-weight: 400px;
+			text-align: center;
+		}
+		table {
+			border-collapse: collapse;
+		}
+		body{
+			margin: 0px;
+			border: 0px;
+
+		}
+
+		h1 {
+			font-family: "Lato", sans-serif;
+			font-size: 4rem;
+			color: #7F7068;
+			font-weight: 700px;
+		}
+		h3 {
+			font-family: "Lato", sans-serif;
+			font-size: 2.5rem;
+			color: #7F7068;
+			font-weight: 400px;
+		}
+		.container {
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			align-items: center;
+			height: 100vh;
+			background: #1F1A18;
+			overflow-y: hidden;
+			padding: 0px 10px;
+		}
+		.container1 {
+			display: flex;
+			flex-direction: row;
+			justify-content: center;
+			align-items: center;
+			width: 100vh;
+			background: #1F1A18;
+			overflow-y: hidden;
+			padding: 0px 10px;
+		}
+		input {
+			width: 100px;
+			padding: 9px;	
+			margin: 8px 10px;
+			font-size: 1rem;
+			font-family: "Lato", sans-serif;
+			font-weight: 400px;	
+			-webkit-transition: width .25s ease-out;
+  			transition: width .25s ease-out;
+		}
+		input:focus {
+			width: 150px;
+		}
+		button {
+			width: 120px;
+			padding: 10px;
+			margin: 8px;
+			background: #000000;
+			color: #5C5656;
+			font-size: 1rem;
+			font-family: "Lato", sans-serif;
+			font-weight: 400px;
+			-webkit-transition: background .25s ease-out;
+  			transition: background .25s ease-out;
+		}
+		button:hover {
+			background: #ccc;
+		}
+		.switchmode {
+			background: #7F7068;
+			width: 200px;
+			color: #282222;
+			
+		}
+
+	</style>
+</head>
+<body>
+	<div id="root"></div>
+	<script type="text/babel">
+		
+		class CardEditor extends React.Component {
+		constructor(props){
+			super(props);
+			this.state = {
+				front:"",
+				back:""
+			}
+		}
+
+			render() {
+
+			const rows = this.props.cards.map((card,i) => {
+			return (
+					<tr key={i}>
+						<td>{ card.front }</td>
+						<td>{ card.back }</td>
+						<td><button data-index={i} onClick={this.deleteCard}>Delete</button></td>	
+					</tr>
+				)
+			});
+
+				return(
+					<div className={"container"}>
+						<h1>Flashcards.ty</h1>
+						
+						<table>
+							<thead>
+								<tr>
+									<th>Front</th>
+									<th>Back</th>
+									<th>Delete</th>
+								</tr>
+							</thead>
+							<tbody>
+
+								{rows}
+
+							</tbody>
+						</table>
+						<br />
+						<div className={"container1"}>
+						<input name="front" onChange={this.handleInput} placeholder="Front of card" value={this.state.front} />
+						<input name="back" onChange={this.handleInput} placeholder="Back of card" value={this.state.back} />
+						</div>
+						<button onClick={this.addCard}>Add Card</button>
+						<h3 style={{ marginTop:"120px", marginBottom:"20px" }}>Card Editor</h3>
+						<button className={"switchmode"} onClick={this.props.switchMode}>Switch to Card Viewer</button>
+					</div>
+
+				);
+			}
+
+			handleInput = (event) => {
+				this.setState({
+					[event.target.name]: event.target.value
+			});	
+			}
+
+			addCard = () => {
+				this.props.addCard(this.state.front,this.state.back);
+				this.setState({
+					front:"",
+					back:""
+				});
+			}
+
+			deleteCard = (event) => {
+				this.props.deleteCard(event.target.dataset.index);
+			}
+
+
+		}
+
+		class CardViewer extends React.Component {
+		constructor(props){
+			super(props);
+			this.state = {
+				front:true,
+				index:0,
+				display:""
+			}
+			console.log("inside viewer 1");
+			this.state.display = ""
+			console.log("inside viewer 2");
+		}
+
+
+		
+
+			render() {
+			this.props.cards.length !== 0 ? this.state.display=this.props.cards[this.state.index].front : "";
+				return(
+					<div className={"container"}>
+						<h1>Flashcards.ty</h1>
+						<div>
+						<table>
+							<tbody>
+								<tr>
+									<td colspan="3">
+										<h1>
+											{this.state.display === "" ? "" : this.state.front ? this.props.cards[this.state.index].front : this.props.cards[this.state.index].back}	
+										</h1>
+									</td>
+								</tr>
+								<tr>
+									<td><button onClick={this.lookAnswer}>{ this.state.display === "" ? "Add Card in Card Editor" : this.state.front ? "Answer" : "Question" }</button></td>
+									<td><button onClick={this.shuffleIndex}>Shuffle Card</button></td>
+									<td><button onClick={this.incrementIndex}>Next Card</button></td>
+								</tr>
+							</tbody>
+						</table>  
+						</div>	
+					<h3 style={{ marginTop:"120px", marginBottom:"20px" }}>Card Viewer</h3>
+					<button className={"switchmode"} onClick={this.props.switchMode}>Switch to Card Editor</button>
+					</div>
+
+				);
+			}
+
+			lookAnswer = () => {
+				this.setState(state => ({
+					front: !state.front,
+				}));
+				
+			}
+
+			incrementIndex = () => {
+				this.setState(state => ({
+					index: state.index+1,
+					front: true
+				}));
+			}
+
+			shuffleIndex = () => {
+				this.setState(state => ({
+					index: Math.ceil(Math.random()*(this.props.cards.length-1)),
+					front: true
+				}));
+			}
+		}
+
+		class App extends React.Component {
+			constructor(props) {
+				super(props);
+				this.state = {
+					editor:true,
+					cards:[]
+				}
+			}
+
+			render() {
+				if(this.state.editor) {
+					return(
+						<CardEditor 
+							cards={this.state.cards}
+							switchMode={this.switchMode} 
+							addCard = {this.addCard}
+							deleteCard = {this.deleteCard}
+						/>
+					)
+				}
+				else {
+					return(
+						<CardViewer
+							cards={this.state.cards}
+							switchMode={this.switchMode}
+						/>
+					)
+				}
+			}
+
+			switchMode = () => {
+				this.setState(state => ({
+					editor: !state.editor
+				}));
+			}
+
+			addCard = (front,back) => {
+				this.setState(state => ({
+					cards: [...state.cards, {front: front, back: back}]
+			}));
+			}
+
+			deleteCard = (index) => {
+				this.setState(state => {
+					const cards = [...state.cards]
+					cards.splice(index,1)
+					return {
+						cards
+					} 
+				});
+			}
+		}
+
+	ReactDOM.render(<App />,document.querySelector("#root"));
+
+	</script>
+</body>
+</html>

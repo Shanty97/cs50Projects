@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+	<script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+	<script src="https://unpkg.com/babel-standalone@6.26.0/babel.min.js"></script>
+	<link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;0,700;1,400;1,700;1,900&display=swap" rel="stylesheet">
+	<style>
+		.incorrect{
+			color: rgb(255,0,0);
+		}
+		body{
+			margin: 0px;
+			border: 0px;
+		}
+		h1 {
+			font-family: "Lato", sans-serif;
+			font-size: 4rem;
+			color: #7F7068;
+			font-weight: 700px;
+		}
+		h2 {
+			font-family: "Lato", sans-serif;
+			font-size: 2.5rem;
+			color: #5C5656;
+			font-weight: 500px;
+		}
+		h3 {
+			font-family: "Lato", sans-serif;
+			font-size: 1.5rem;
+			color: #5C5656;
+			font-weight: 400px;
+		}
+		.container {
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			align-items: center;
+			height: 100vh;
+			background: #1F1A18;
+			overflow-y: hidden;
+			padding: 0px 10px;
+		}
+		input {
+			width: 120px;
+			padding: 9px;	
+			margin: 8px 10px;
+			font-size: 1rem;
+			font-family: "Lato", sans-serif;
+			font-weight: 400px;	
+			-webkit-transition: width .25s ease-out;
+  			transition: width .25s ease-out;
+  			text-align: center;
+		}
+		input:focus {
+			width: 160px;
+		}
+		.italia {
+			font-style: italic;
+		}
+	</style>
+	<title>Addition Game</title>
+</head>
+<body>
+	<div id="root"></div>
+	<script type="text/babel">
+		
+		class App extends React.Component {
+		constructor(props){
+			super(props);
+			this.state = {
+				num1: Math.ceil(Math.random()*10),
+				num2: Math.ceil(Math.random()*10),
+				score:0,
+				response:'',
+				incorrect: false,
+				talk: [
+				"Let's see what you got !",
+				"That was easy. Solve this !",
+				"You cannot crack this !",
+				"Not bad. But what about this ?",
+				"Answer this and you have earned my respect"
+				]
+			}
+		}
+
+		handleinput = (event) => {
+			this.setState({
+			response: event.target.value
+		});
+	}
+
+	submitAnswer = (event) => {
+		if(event.key === "Enter"){
+		const answer = parseInt(this.state.response);
+		if(answer === this.state.num1 + this.state.num2){
+			if(this.state.score === 1){
+				this.setState(state => ({
+				num1: Math.ceil(Math.random()*20),
+				num2: Math.ceil(Math.random()*50),
+			}));	
+			}
+			else if(this.state.score === 2){
+				this.setState(state => ({
+				num1: Math.ceil(Math.random()*50),
+				num2: Math.ceil(Math.random()*100),
+			}));
+			}
+			else if(this.state.score === 3){
+				this.setState(state => ({
+				num1: Math.ceil(Math.random()*100),
+				num2: Math.ceil(Math.random()*200),
+			}));
+			}
+			else if(this.state.score === 4){
+				this.setState(state => ({
+				num1: Math.ceil(Math.random()*150),
+				num2: Math.ceil(Math.random()*400),
+			}));
+			}
+			else if(this.state.score === 5){
+				this.setState(state => ({
+				num1: Math.ceil(Math.random()*250),
+				num2: Math.ceil(Math.random()*500),
+			}));
+			}
+			else{
+				this.setState(state => ({
+				num1: Math.ceil(Math.random()*10),
+				num2: Math.ceil(Math.random()*20),
+				}));
+			}
+			this.setState(state => ({
+			score: state.score+1,
+			response: "",
+			incorrect:false
+		}));
+		}
+		else{
+			this.setState({
+			response: "",
+			incorrect:true
+		});	
+		}
+	}
+	}
+		render(){
+		
+			if(this.state.score >=5) {
+				return this.renderWin();
+			}
+			else{
+				return this.renderRun();
+			}
+		
+	}
+
+		renderRun() {
+			return(
+			<div className={"container"}>
+				<h1>Addition.ty</h1>
+				<h2 className={this.state.incorrect ? "incorrect" : ""}>{this.state.num1}+{this.state.num2}</h2>
+				<h3 className={"italia"}>
+				{ this.state.talk[this.state.score] }
+				</h3>
+				<input type="text" placeholder="Enter Answer" onKeyPress={this.submitAnswer} onChange={this.handleinput} value={this.state.response}></input>
+				<div>
+					<h3>Score: {this.state.score}</h3>
+				</div>
+			</div>
+		);
+		}
+
+		renderWin() {
+			return(
+			<div className={"container"}>
+				<h1>Congratulations !! You have won !</h1>
+				
+			</div>
+		);
+		}
+
+	}
+
+	ReactDOM.render(<App />,document.querySelector("#root"));
+
+	</script>
+</body>
+</html>

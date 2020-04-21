@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+	<script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+	<script src="https://unpkg.com/babel-standalone@6.26.0/babel.min.js"></script>
+	<link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;0,700;1,400;1,700;1,900&display=swap" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="bootstr/css/bootstrap.min.css">
+	<style>
+		.incorrect{
+			color: rgb(255,0,0);
+		}
+		body{
+			margin: 0px;
+			border: 0px;
+			text-decoration: none;
+		}
+		h1 {
+			font-family: "Lato", sans-serif;
+			font-size: 4rem;
+			color: #7F7068;
+			font-weight: 700px;
+		}
+		h2 {
+			font-family: "Lato", sans-serif;
+			font-size: 2.5rem;
+			color: #fff;
+			font-weight: 500px;
+		}
+		h3 {
+			font-family: "Lato", sans-serif;
+			font-size: 1.5rem;
+			color: #5C5656;
+			font-weight: 400px;
+		}
+		.container1 {
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			align-items: center;
+			height: 100vh;
+			background: #1F1A18;
+			overflow-y: hidden;
+			padding: 0px 10px;
+		}
+		.layoutH {
+			display: flex;
+			flex-direction: row;
+			justify-content: space-around;
+			align-items: center;
+			width: 100%;
+			margin: 50px 10px;
+			padding: 0px 10px;
+		}
+		.card {
+			margin: 20px;
+			transition: transform .2s;
+			background: #7F7068;
+		}
+		.card-body, .card-img.top, .img-fluid, .img-thumbnail {
+			background: #7F7068;
+			border: none;
+			color: #fff;
+			padding: 10px;
+			border-bottom-left-radius: 0px;
+			border-bottom-right-radius: 0px;
+		}
+		img {
+			margin: 0px;
+			
+		}
+
+		.card:hover{
+			transform: scale(1.1);
+		}
+		a{
+			text-decoration: none !important;
+			color: #fff;
+			cursor: pointer;
+		}
+	</style>
+	<title>CS50 Projects</title>
+</head>
+<body>
+	<div id="root"></div>
+	<script type="text/babel">
+		
+		class App extends React.Component {
+		render() {
+			return(
+			<div className={"container1"}>
+				<h1>CS50 Projects</h1>
+				<div className={"layoutH"}>
+					<a href="addition.html">
+						<div className={"card"} >
+						<img className={"card-img-top img-fluid img-thumbnail"} src="images/addition.png" />
+						  <div className={"card-body"}>
+						    <h2>Addition.ty</h2>
+						    <p>A game to test your addition skills.</p>
+						  </div>	  
+						</div>
+					</a>
+					
+						<a href="todo.html">
+						<div className={"card"}>
+						<img className={"card-img-top img-fluid img-thumbnail"} src="images/todo.png" />	
+						  <div className={"card-body"}>
+						     <h2>Todo.ty</h2>
+						    <p>A todo list to manage your daily chores.</p>
+						  </div>
+						</div>
+						</a>
+
+						<a href="flashcards.html">
+						<div className={"card"}>
+						<img className={"card-img-top img-fluid img-thumbnail"} src="images/flashcards.png" />	
+						  <div className={"card-body"}>
+						     <h2>Flashcards.ty</h2>
+						    <p>To train your memory during exams.</p>
+						  </div>
+						</div>
+						</a>
+				
+						<a href="exchange.html">
+						<div className={"card"}>
+						<img className={"card-img-top img-fluid img-thumbnail"} src="images/exchange.png" />
+						  <div className={"card-body"}>
+						     <h2>Exchange.ty</h2>
+						    <p> An currency exchange tool for easy calculation.</p>
+						  </div>
+						</div>
+						</a>
+
+				</div>
+			</div>
+		);
+		}
+	}
+
+	ReactDOM.render(<App />,document.querySelector("#root"));
+
+	</script>
+</body>
+</html>
