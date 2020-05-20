@@ -2,7 +2,7 @@
 
 > These are ReactJS Practice projects based on Harvard's CS50 Beyond 2019 content.
 
-![Documentation%209ceaf51ecfdc4aec8b68c105da9a79c0/1.png](Documentation%209ceaf51ecfdc4aec8b68c105da9a79c0/1.png)
+![https://github.com/Shanty97/cs50Projects/blob/master/documentation/1.PNG](https://github.com/Shanty97/cs50Projects/blob/master/documentation/1.PNG)
 
 ### Project List
 
@@ -17,15 +17,19 @@
 
 ### Screenshots
 
-![Documentation%209ceaf51ecfdc4aec8b68c105da9a79c0/2.png](Documentation%209ceaf51ecfdc4aec8b68c105da9a79c0/2.png)
 
-![Documentation%209ceaf51ecfdc4aec8b68c105da9a79c0/3.png](Documentation%209ceaf51ecfdc4aec8b68c105da9a79c0/3.png)
 
-![Documentation%209ceaf51ecfdc4aec8b68c105da9a79c0/5.png](Documentation%209ceaf51ecfdc4aec8b68c105da9a79c0/5.png)
+![https://github.com/Shanty97/cs50Projects/blob/master/documentation/2.PNG](https://github.com/Shanty97/cs50Projects/blob/master/documentation/2.PNG)
 
-![Documentation%209ceaf51ecfdc4aec8b68c105da9a79c0/6.png](Documentation%209ceaf51ecfdc4aec8b68c105da9a79c0/6.png)
+![https://github.com/Shanty97/cs50Projects/blob/master/documentation/3.PNG](https://github.com/Shanty97/cs50Projects/blob/master/documentation/3.PNG)
 
-![Documentation%209ceaf51ecfdc4aec8b68c105da9a79c0/7.png](Documentation%209ceaf51ecfdc4aec8b68c105da9a79c0/7.png)
+![https://github.com/Shanty97/cs50Projects/blob/master/documentation/4.PNG](https://github.com/Shanty97/cs50Projects/blob/master/documentation/4.PNG)
+
+![https://github.com/Shanty97/cs50Projects/blob/master/documentation/5.PNG](https://github.com/Shanty97/cs50Projects/blob/master/documentation/5.PNG)
+
+![https://github.com/Shanty97/cs50Projects/blob/master/documentation/6.PNG](https://github.com/Shanty97/cs50Projects/blob/master/documentation/6.PNG)
+
+![https://github.com/Shanty97/cs50Projects/blob/master/documentation/7.PNG](https://github.com/Shanty97/cs50Projects/blob/master/documentation/7.PNG)
 
 ### References
 
